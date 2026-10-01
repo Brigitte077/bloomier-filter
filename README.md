@@ -33,3 +33,10 @@ Values may be small non-negative integers (must fit in `m` bits) or strings. Int
 ## The awkward edge
 
 Construction can fail. The build algorithm peels keys off one at a time, assigning a cell to satisfy each. If the table is too small or the hash assignment unlucky, a clique of keys shares all their cells and peeling stalls. When this happens `buildBloomierFilter` **throws** rather than producing a silently broken filter. Retry with a larger `tableSize` (default is `ceil(1.5 * n * k)`) or a different `seed`.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
