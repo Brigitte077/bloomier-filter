@@ -1,6 +1,6 @@
 {
   "name": "bloomier-filter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Associates a small value with each key in a static dictionary using multiple hash functions with no false positives.",
   "type": "module",
   "main": "src/index.js",
